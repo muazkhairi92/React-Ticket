@@ -66,7 +66,7 @@ export const SignIn = ({show,ema,passwor}) => {
             <div style={{display:"flex",justifyContent:'center', alignItems:"center"}}>
             <label htmlFor="email">Email: </label>
             <div style={{display:"flex",flexDirection:"column"}}>
-            <Field name="email" type="text" />
+            <Field name="email" type="text" as={MyInput}/>
             {/* <MyInput         
             // id="email"
           name="email"
@@ -82,7 +82,7 @@ export const SignIn = ({show,ema,passwor}) => {
             <div style={{display:"flex",justifyContent:'center', alignItems:"center"}}>
             <label htmlFor="password">Password: </label>
             <div style={{display:"flex",flexDirection:"column"}}>
-            <Field name="password" type="password" />
+            <Field name="password" type="password" as={MyInput} />
             <ErrorMessage name="password"/>
             </div>
             </div>

@@ -3,7 +3,7 @@ import { Typography, Box, TextField, InputAdornment } from "@mui/material";
 
 
 
-export const MyInput = ({id,name,label,value,onChange,helperText}) => {
+export const MyInput = ({id,name,label,value,onChange,helperText,...rest}) => {
 
     
     return(
@@ -14,6 +14,8 @@ export const MyInput = ({id,name,label,value,onChange,helperText}) => {
         }}
         noValidate
         autoComplete="off">
+
+
         <TextField 
                 id={id}
                 name={name}
@@ -22,7 +24,7 @@ export const MyInput = ({id,name,label,value,onChange,helperText}) => {
                 onChange={onChange}
                 helperText={helperText}
         color="secondary"
-  
+        {...rest}
 
             />
 

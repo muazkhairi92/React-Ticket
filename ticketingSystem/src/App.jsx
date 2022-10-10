@@ -27,12 +27,13 @@ function App() {
         <Route element={<Layout/>}>
         <Route path="login" element={<SignIn />} />
         <Route path="register" element={<SignUp />} />
-        <Route path={"/profile"} element={<ProtectedRoute><UserDet/></ProtectedRoute>} />
-        <Route path={"/users"} element={<ProtectedRoute isAllowed={user?.roles.includes('admin')} redirectPath={'/home'}><UserDash/></ProtectedRoute>} />
+
         <Route path="not-authorized" element={<NotAuthorized/>} />
         </Route>
         <Route path="*" element={<Nomatch/>} />
         <Route element={<LayoutTicket/>}>
+        <Route path={"/profile"} element={<ProtectedRoute><UserDet/></ProtectedRoute>} />
+        <Route path={"/users"} element={<ProtectedRoute isAllowed={user?.roles.includes('admin')} redirectPath={'/home'}><UserDash/></ProtectedRoute>} />
         <Route path="/tickets" element={<TicketDash />} />
         <Route path="/create-ticket" element={<CreateTicket />} />
         </Route>

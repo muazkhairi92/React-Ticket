@@ -11,12 +11,13 @@ import axios from "axios";
 //     }
 //   );
   
-export const get = async (endpoint, body,options)=>{
+export const get = async (endpoint, body,options,config)=>{
     try {
         const response = await axios.get(
             endpoint,
             body,
-            options
+            options,
+            config
             );
             return {data:response.data, status: response.status};
     }

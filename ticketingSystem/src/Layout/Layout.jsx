@@ -10,19 +10,19 @@ export const Layout = () => {
   
     return (
     
-      <div style={{width:"100%"}}>
+      <div>
       <UpperNav/>
       <div style={{display:"flex", flexDirction:"column", gap:"15%"}}>
         {/* <main style={{backgroundColor:"#C996CC", borderRadius:"5%", 
         color:"#E3D2C8D",display:"flex", flexDirection:"column", alignContent:"center",justifyContent:"center",alignItems:"center", height:"350px", padding:"5% 3% 5% 3%"}} >
       <h2>Welcome to Ticketing System</h2>
     </main> */}
-    <img src='../src/assets/ticketing-banner-image.png'/>
+    <img src='../src/assets/ticketing-banner-image.png' className='hidden md:flex'/>
 
         {/* <main style={{ padding: '1rem 0',backgroundColor:"#C996CC", borderRadius:"5%", 
         color:"#E3D2C8D",display:"flex", flexDirection:"column", alignContent:"center",justifyContent:"center",alignItems:"center", height:"350px"}}> */}
           
-          <Paper elevation={3} sx={{width:"50vw"}}>
+          <Paper elevation={3} sx={{width:"65vw", padding:"5%"}}>
           <Outlet />
           </Paper>
         {/* </main> */}

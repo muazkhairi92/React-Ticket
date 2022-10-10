@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { array } from "yup";
 import { loginAPI } from "../api/auth";
-import { signIn, signUp } from "../api/users";
+import { getUser, signIn, signUp } from "../api/users";
 import AuthContext from "../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
@@ -10,7 +10,9 @@ import axios from "axios";
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [roles, setRoles] = useState([]);
+  const [cat, setCat] = useState();
   
   const navigate = useNavigate();
   
@@ -77,15 +79,32 @@ const AuthProvider = ({ children }) => {
 
 
 
+  const gUser =async(token)=>{
+    // console.log(token);
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await getUser(config);
+    setUsers(data);
+    // console.log(data);
+      console.log(data);
+      console.log(users);
+  };
+
+
+
+
   return (
     <AuthContext.Provider
       value={{
         token,
         user,
         users,
+     
         signin,
         signout,
-        register
+        register,
+        gUser
       }}
     >
       {children}
