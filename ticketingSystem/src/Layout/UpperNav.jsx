@@ -6,7 +6,7 @@ export const UpperNav = () => {
     const { signout, token, user } = useAuth();
     const style = ({ isActive }) => ({
         fontWeight: isActive ? 'bold' : 'normal',
-        color:"black"
+        color:"white"
       });
 
     return (
@@ -24,11 +24,11 @@ export const UpperNav = () => {
             top:"0",
             left:"0",
             // right:"0",
-            backgroundColor:"ThreeDFace"
+            backgroundColor:"#3D2C8D",
         }}
       >
         <NavLink to="/home" style={style}>Home</NavLink>
-        <div style={{display:"flex",marginRight:"5%",gap:"5%",width:"10%"}}>
+        <div style={{display:"flex",gap:"5%",width:"30%"}}>
         {user?.roles.includes('admin') && token ?<NavLink to="/users" style={style}>Users</NavLink> : null}
         {token ?<NavLink to="/profile" style={style}>Edit Profile</NavLink> : null}
         {token ? <NavLink onClick={() => signout()}>Logout</NavLink> : <NavLink to="/login" style={style}>Log In</NavLink>}

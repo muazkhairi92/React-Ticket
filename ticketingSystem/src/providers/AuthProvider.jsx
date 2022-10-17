@@ -2,15 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { array } from "yup";
 import { loginAPI } from "../api/auth";
-import { getUser, signIn, signUp } from "../api/users";
+import { editUser, getUser, signIn, signUp } from "../api/users";
 import AuthContext from "../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { createTickets, delTicket, editTicket, getTickets } from "../api/ticket";
 
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([]);
+  const [tickets, setTickets] = useState([]);
   const [roles, setRoles] = useState([]);
   const [cat, setCat] = useState();
   
@@ -24,6 +26,9 @@ const AuthProvider = ({ children }) => {
       if(data.message === 'Login Success' && data.data.token){
             setToken(data.data.token);
                 setUser(data.data.user);
+                if(user.roles === 'developer' || user.roles === 'suppport' ){
+                  navigate(`/my-tickets`);
+                }
                 navigate(`/tickets`);
       }
       else{
@@ -87,10 +92,55 @@ const AuthProvider = ({ children }) => {
     const {data} = await getUser(config);
     setUsers(data);
     // console.log(data);
-      console.log(data);
-      console.log(users);
+      // console.log(data);
+      // console.log(users);
   };
 
+  const gTick =async(token)=>{
+    // console.log(token);
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await getTickets(config);
+    setTickets(data);
+    // console.log(data);
+      // console.log(data);
+      // console.log(users);
+  };
+
+  const pTick = async(tick,token)=>{
+    const con = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await createTickets(tick,con);
+    console.log(data);
+
+  }
+  const delTick = async(id)=>{
+    const con = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await delTicket(con,id);
+    console.log(data);
+
+  }
+  const eTick = async(tick,id)=>{
+    const con = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await editTicket(con,tick,id);
+    console.log(data);
+
+  }
+  const eUser = async(user,id)=>{
+    const con = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await editUser(con,user,id);
+    console.log(data);
+ 
+
+  }
 
 
 
@@ -100,11 +150,16 @@ const AuthProvider = ({ children }) => {
         token,
         user,
         users,
-     
+        tickets,
         signin,
         signout,
         register,
-        gUser
+        gUser,
+        eUser,
+        gTick,
+        pTick,
+        delTick,
+        eTick
       }}
     >
       {children}

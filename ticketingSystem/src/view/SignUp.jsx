@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFormik,Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from "yup";
 import {SignIn} from './SignIn';
@@ -6,9 +6,10 @@ import MyButton from '../components/MyButton';
 import {NavLink, useNavigate} from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import { MyInput } from '../components/MyInput';
-// import { getRoles, getUser } from '../api/users';
-import { useQuery } from "@tanstack/react-query";
+// import { getRoles } from '../api/users';
+import {  useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import Select from '@mui/material/Select';
 
 
 
@@ -25,27 +26,59 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const {register} = useAuth();
 
-  const fetchRoles=()=>{
-    return axios.get('http://127.0.0.1:8000/api/roles-list')
+  const fetchRoles= ()=>{
+    return  axios.get('http://127.0.0.1:8000/api/roles-list')
 }
-const {data, isLoading,isError,error,isFetching,refetch} = useQuery([],fetchRoles,{
+const {data, isLoading,isError,error,isFetching,refetch} = useQuery(["Roles"],fetchRoles,{
     enabled:true,
     onSuccess:(res)=>{console.log('tahniah',res)
 },
 onError:(res)=>{console.log('error',res)}
 });
-console.log(data);
 
-const{ Category, Roles} = data.data;
+if (isLoading) {
+  return <div>Loading...</div>
+}
+if (isError) {
+  return <div>Error! {error.message}</div>
+}
+// const getRoles = async ()=>{
+//   const res = await axios.get(
+//       'http://127.0.0.1:8000/api/roles-list',
+//   );
+//   return res;
+// };
+// const data = getRoles();
+
+// useEffect(()=>fetchRoles(),[])
+// console.log(data);
+
+// const fetchSuperheroes=()=>{
+//   return axios.get('http://127.0.0.1:8000/api/roles-list')
+// }
+
+// const {data, isLoading,isError,error,isFetching,refetch} = useQuery(["roles"],fetchSuperheroes,{
+//   enabled:true,
+//   onSuccess:(res)=>{console.log('tahniah',res)
+// },
+// onError:(res)=>{console.log('error',res)}
+// });
+// console.log(fetchSuperheroes);
+
+const{ Category, Roles} = data?.data;
+// const Category = ['None','Cista','Adnexio','Meniaga','Decoris'];
+// const Roles = ['Admin','Support','Developer'];
 
 
-
+// if(isError){
+//   return <h1>{error}</h1>
+//  }
 
 
 
   return (
     <Formik 
-    initialValues= {{email:"" ,name:"", password:"",roles:"", category:""}}
+    initialValues= {{email:"" ,name:"", password:"",roles:"Support", categories_id:"1"}}
     validationSchema = {yup.object({
         name: yup
         .string()
@@ -71,7 +104,7 @@ const{ Category, Roles} = data.data;
         roles: yup
         .string(),
 
-        category: yup
+        categories_id: yup
         .string()
 
     })}
@@ -84,55 +117,55 @@ const{ Category, Roles} = data.data;
        
         // getComponent();
     }}>
-            <div>
-            <Form className='flex'>
+            <Form style={{display:"flex",flexDirection:"column",gap:"2%"}}>
             <h3>Get Started</h3>
-                <div className='flex'>
+                <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
             <label htmlFor="name">Name: </label>
-            <Field name="name" type="text" error={ErrorMessage} helperText={ErrorMessage.name.name}as={MyInput}/>
+            <Field name="name" type="text" as={MyInput}/>
             <ErrorMessage name="name"/>
             </div>
 
-            <div className='flex'>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
             <label htmlFor="email">Email: </label>
-            <Field name="email" type="text"  error={ErrorMessage} helperText={ErrorMessage.ErrorMessage} as={MyInput}/>
+            <Field name="email" type="text"  error={ErrorMessage.name.name} helperText={ErrorMessage.ErrorMessage} as={MyInput}/>
 
             <ErrorMessage name="email"/>
             </div>
 
-            <div>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
             <label htmlFor="password">Password: </label>
-            <Field name="password" type="password"  error={ErrorMessage} helperText={ErrorMessage.name.password} as={MyInput} />
+            <Field name="password" type="password"  error={ErrorMessage.name.name} helperText={ErrorMessage.name.password} as={MyInput} />
             <ErrorMessage name="password"/>
             </div>
 
-            <div>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
             <label htmlFor="cpassword">Retype Password: </label>
-            <Field name="cpassword" type="password"  error={ErrorMessage} helperText={ErrorMessage.name.cpassword} as={MyInput} />
+            <Field name="cpassword" type="password"  error={ErrorMessage.name.name} helperText={ErrorMessage.name.cpassword} as={MyInput} />
             <ErrorMessage name="cpassword"/>
             </div>
 
     
-            <div>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
             <label htmlFor="roles">Roles: </label>
-            <Field as="select" name="roles">
+            <Field as="select"name="roles" style={{width:"40%", padding:"2%"}}>
             {Roles?.map((item)=><option value={item}>{item}</option>)}
             </Field>
             </div>
 
-            <div>
-            <label htmlFor="category">Category: </label>
-            <Field as="select" name="category">
-            {Category?.map((item)=><option value={item}>{item}</option>)}
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+            <label htmlFor="categories_id">Category: </label>
+            <Field as="select"  name="categories_id" style={{width:"40%", padding:"2%", marginBottom:"3%",marginTop:"3%"}}>
+            {Category?.map((item,i)=><option value={i+1}>{item}</option>)}
             </Field>
             </div>
 
+            <div style={{display:"flex",AlignItems:"center", justifyContent:"center"}}>
 
             <MyButton type='submit' > Sign Up</MyButton>        
+            </div>
         </Form>
 
    
-    </div>
     
     </Formik>
 

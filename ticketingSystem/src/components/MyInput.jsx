@@ -10,7 +10,29 @@ export const MyInput = ({id,name,label,value,onChange,helperText,...rest}) => {
         <Box     
         component="form"
         sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
+            "& .MuiInputBase-root": {
+                height: 30
+            },
+            '& > :not(style)': { m: 1, height: '1%' },
+            '& label.Mui-focused': {
+                color: '#09A3A9',
+              },
+              '& .MuiInput-underline:after ': {
+                borderBottomColor: '#09A3A9',
+                
+              },
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': {
+                  borderColor: 'gray',
+                },
+                '&:hover fieldset': {
+                  borderColor: 'yellow',
+                },
+                '&.Mui-focused fieldset ': {
+                  borderColor: '#09A3A9',
+
+                },
+            }
         }}
         noValidate
         autoComplete="off">
@@ -23,7 +45,7 @@ export const MyInput = ({id,name,label,value,onChange,helperText,...rest}) => {
                 value={value}
                 onChange={onChange}
                 helperText={helperText}
-        color="secondary"
+        // color="primary"
         {...rest}
 
             />

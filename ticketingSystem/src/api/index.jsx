@@ -19,21 +19,23 @@ export const get = async (endpoint, body,options,config)=>{
             options,
             config
             );
+            // console.log(response);
             return {data:response.data, status: response.status};
     }
     catch(e){
         console.log(e);
-        // throw e;
+        throw e;
     }
 };
 
-export const post = async (endpoint, body,options, data)=>{
+export const post = async (endpoint, body,options, data,config)=>{
     try {
         const response = await axios.post(
             endpoint,
             body,
             options,
             data,
+            config
             );
             return response;
     }
@@ -44,12 +46,28 @@ export const post = async (endpoint, body,options, data)=>{
     }
 };
 
-export const put = async (endpoint, body,options)=>{
+export const put = async (endpoint, body,options,config)=>{
     try {
-        const response = await axios.post(
+        const response = await axios.put(
             endpoint,
             body,
             options
+            );
+            return response;
+    }
+    catch(e){
+        console.log(e);
+        throw e;
+    }
+};
+
+export const destroy = async (endpoint, body,options,config)=>{
+    try {
+        const response = await axios.delete(
+            endpoint,
+            body,
+            options,
+            config
             );
             return response;
     }

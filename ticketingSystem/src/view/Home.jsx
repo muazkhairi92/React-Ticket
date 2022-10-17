@@ -17,12 +17,14 @@ export const Home= ()=> {
     <UpperNav/>
     {/* <main style={{backgroundColor:"#C996CC", borderRadius:"5%", 
     color:"#E3D2C8D",display:"flex", flexDirection:"column", alignContent:"center",justifyContent:"center",alignItems:"center", width:"400px", height:"350px", padding:"5% 3% 5% 3%", }} > */}
-    <Paper elevation={3}>
-  <h2>Welcome to Ticketing System</h2>
-  <h3>Search your ticket</h3>
-
+    <div style={{display:"flex", flexDirection:"column"}}>
+      
+    <img src='../src/assets/support-tickets.png' style={{width:"50vw",height:"50vh"}}/>
+    <Paper elevation={3} style={{backgroundColor:"#1C0C5B", padding:"3%"}}>
+  <h2 style={{color:"white", fontWeight:"bold"}}>Welcome to Solver Ticketing System</h2>
     </Paper>
 
+</div>
 {/* </main> */}
 </div>
   )

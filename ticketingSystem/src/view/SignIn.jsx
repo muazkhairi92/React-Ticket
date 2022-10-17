@@ -61,7 +61,7 @@ export const SignIn = ({show,ema,passwor}) => {
 
       // checkPass();
     }}>
-            <Form style={{display:show,flexDirection:"column", alignItems:"center", width:"500px"}}>
+            <Form style={{display:show,flexDirection:"column", alignItems:"center"}}>
             <h3>Sign In</h3>
             <div style={{display:"flex",justifyContent:'center', alignItems:"center"}}>
             <label htmlFor="email">Email: </label>

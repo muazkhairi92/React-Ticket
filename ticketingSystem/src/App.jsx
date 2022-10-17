@@ -13,6 +13,9 @@ import { ProtectedRoute } from './routes/ProtectedRoutes';
 import useAuth from './hooks/useAuth';
 import { UserDet } from './view/UserDet';
 import { NotAuthorized } from './view/NotAuthorized';
+import { CompleteTicket } from './view/CompleteTicket';
+import { EditTicket } from './view/EditTicket';
+import { MyTicket } from './view/MyTicket';
 
 
 function App() {
@@ -34,7 +37,10 @@ function App() {
         <Route element={<LayoutTicket/>}>
         <Route path={"/profile"} element={<ProtectedRoute><UserDet/></ProtectedRoute>} />
         <Route path={"/users"} element={<ProtectedRoute isAllowed={user?.roles.includes('admin')} redirectPath={'/home'}><UserDash/></ProtectedRoute>} />
-        <Route path="/tickets" element={<TicketDash />} />
+        <Route path="/tickets" element={<ProtectedRoute><TicketDash /></ProtectedRoute>} />
+        <Route path="/tickets-complete" element={<ProtectedRoute><CompleteTicket /></ProtectedRoute>} />
+        <Route path="/tickets-edit" element={<ProtectedRoute><EditTicket /></ProtectedRoute>} />
+        <Route path="/my-tickets" element={<ProtectedRoute><MyTicket /></ProtectedRoute>} />
         <Route path="/create-ticket" element={<CreateTicket />} />
         </Route>
       </Routes>

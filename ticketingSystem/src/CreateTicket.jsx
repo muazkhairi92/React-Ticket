@@ -3,92 +3,134 @@ import { useFormik,Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from "yup";
 import {NavLink, useNavigate} from 'react-router-dom';
 import MyButton from './components/MyButton';
+import { MyInput } from './components/MyInput';
+import { Select } from '@mui/material';
+import useAuth from './hooks/useAuth';
+import axios from 'axios';
+import { useQuery } from '@tanstack/react-query';
 
 // import SignIn from './SignIn';
 
 export const CreateTicket = () => {
   
   
-  const [emai,setEmai]=useState("");
-  const [pass,setPass]=useState();
-  const [reg,setReg]=useState("flex");
-  const [log,setLog]=useState("none");
-  const navigate = useNavigate();
 
-  const[drop,setDrop] =useState(false);
-  const[cat,setCat] =useState("");
-  const toggle =()=>setDrop(!drop);
+  const {pTick, token} = useAuth();
 
-  const[dropl,setDropl] =useState(false);
-  const[lvl,setLvl] =useState("");
-  const togglel =()=>setDropl(!dropl);
+  const config = {
+    headers: { Authorization: `Bearer ${token}` }
+};
+  const fetchLookup= ()=>{
+    return  axios.get('http://127.0.0.1:8000/api/ticket-lookup',config)
+}
+  
+  const {data, isLoading,isError,error,isFetching,refetch} = useQuery(["tik"],fetchLookup,{
+    enabled:true,
+    onSuccess:(res)=>{console.log('tahniah',res)
+},
+onError:(res)=>{console.log('error',res)}
+});
+
+if (isLoading) {
+  return <div>Loading...</div>
+}
+if (isError) {
+  return <div>Error! {error.message}</div>
+}
+
+const {Category, PriorityLevel,Status,Developer} = data?.data;
 
 
 
-  const cate = ["Adnexio", "Meniaga","CISTA"];
-  const level = ["High", "Medium","Low"];
+  // const Developer = ["Abu", "Ali","Ahmad"];
 
 
 
   return (
     <Formik 
-    initialValues= {{title:"" ,desc:"", category:"Adnexio", level:"High"}}
+    initialValues= {{title:"" ,description:"", categories_id:1, priority_levels_id:1,developer_id:1,statuses_id:1}}
     validationSchema = {yup.object({
         title: yup
         .string().
         max(30,"Must be less than 30 characters")
         .required("Required"),
 
-        desc: yup
+        description: yup
         .string().
         min(8,"Must be at least 8 character")
         .required("Required"),
 
-        category: yup
-        .string(),
+        categories_id: yup
+        .number(),
 
-        level: yup
-        .string()
+        priority_levels_id: yup
+        .number(),
+
+        developer_id: yup
+        .number(),
+
+        statuses_id:yup
+        .number()
 
     })}
     onSubmit = {(values) => {
   
         console.log(values);
 
-       
+       pTick(values,token);
         // getComponent();
     }}>
             <div>
-            <Form style={{display:reg, flexDirection:"column",alignItems:"center", justifyContent:"center",gap:"5%", height:"80px"}}>
+            <Form style={{display:"flex",flexDirection:"column",gap:"2%"}}>
             <h3>Create A Ticket</h3>
-                <div>
+
+
+          <div style={{display:"flex", height:"40vh"}}>
+            <div>
+                <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+
             <label htmlFor="title">Title: </label>
-            <Field name="title" type="text" />
+            <Field name="title" type="text" as={MyInput} />
             <ErrorMessage name="title"/>
             </div>
-
-            <div>
-            <label htmlFor="desc">Description: </label>
-            <Field name="desc" type="text" style={{height:"50px"}}/>
+           <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center",}}>
+            <label htmlFor="description">Description: </label>
+            <Field name="description" type="text" multiline rows={1} as={MyInput}/>
             <ErrorMessage name="desc"/>
             </div>
+            </div>
 
+            <div style={{display:"flex", flexDirection:"column",gap:"5%"}}>
             <div>
-            <label htmlFor="category">Category: </label>
-            <Field as="select" name="category">
-            {cate.map((item)=><option value={item}>{item}</option>)}
+            <label htmlFor="categories_id">Category: </label>
+            <Field as="select" name="categories_id" style={{ padding:"2%"}}>
+            {Category.map((item,i)=><option value={i+1}>{item}</option>)}
             </Field>
             </div>
 
             <div>
-            <label htmlFor="level">Priority Level: </label>
-            <Field as="select" name="level">
-            {level.map((item)=><option value={item}>{item}</option>)}
+            <label htmlFor="priority_levels_id">Priority Level: </label>
+            <Field as="select" name="priority_levels_id" style={{ padding:"2%"}}>
+            {PriorityLevel.map((item,i)=><option value={i+1}>{item}</option>)}
             </Field>
             </div>
 
+            <div>
+            <label htmlFor="developer_id">Developer: </label>
+            <Field as="select" name="developer_id" style={{ padding:"2%"}}>
+            {Developer.map((item,i)=><option value={i}>{item}</option>)}
+            </Field>
+            </div>
 
+            <div>
+            <label htmlFor="statuses_id">Status: </label>
+            <Field as="select" name="statuses_id" style={{padding:"2%"}}>
+            {Status.map((item,i)=><option value={i+1}>{item}</option>)}
+            </Field>
+            </div>
 
+            </div>
+            </div>
             <MyButton type='submit' > Create</MyButton>        
         </Form>
 
