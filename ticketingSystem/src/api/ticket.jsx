@@ -33,8 +33,8 @@ export const getStatus = async (token)=>{
     const config = {
         headers: { Authorization: `Bearer ${token}` }
     };
-    const {Category, PriorityLevel,Status,Developer}  = await get(
+    const res  = await get(
         'http://127.0.0.1:8000/api/ticket-lookup',config
     );
-    return Status;
+    return res;
 };

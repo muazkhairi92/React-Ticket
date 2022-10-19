@@ -9,6 +9,12 @@ import useAuth from '../hooks/useAuth';
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { MyInput } from '../components/MyInput';
+import { Paper } from '@mui/material';
+// import {MuiAlert, Snackbar } from "@mui/material";
+
+// const Alert = forwardRef(function Alert(props, ref) {
+//   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
 
 export const SignIn = ({show,ema,passwor}) => {
  
@@ -17,7 +23,7 @@ export const SignIn = ({show,ema,passwor}) => {
   const[ps,setPs]=useState("");
   const[disp,setDisp]=useState("none");
   const navigate = useNavigate();
-  const {signin} = useAuth();
+  const {signin,user} = useAuth();
 
   // const checkPass=()=>{
   //   if(ps === passwor && el === ema){
@@ -37,6 +43,13 @@ export const SignIn = ({show,ema,passwor}) => {
 
 
   return (
+    <div style={{display:"flex", justifyItems:'center',justifyContent:'center', alignItems:"center", gap:"15%", marginTop:"5%"}}>
+   
+    <img src='../src/assets/login.png' style={{width:"25%",height:"25%"}}/>
+
+       
+          
+          <Paper elevation={3} sx={{width:"45vw", padding:"2%"}}>
     <Formik 
     initialValues= {{email:"", password:""}}
     validationSchema = {yup.object({
@@ -58,28 +71,22 @@ export const SignIn = ({show,ema,passwor}) => {
       // mutate(values);
       signin(values);
       console.log(values);
+      
 
       // checkPass();
     }}>
-            <Form style={{display:show,flexDirection:"column", alignItems:"center"}}>
+            <Form style={{display:"flex",flexDirection:"column", alignItems:"center", gap:"5%" }}>
             <h3>Sign In</h3>
-            <div style={{display:"flex",justifyContent:'center', alignItems:"center"}}>
+            
+            <div style={{display:"flex",justifyContent:'space-between', alignItems:"center", width:"30vw"}}>
             <label htmlFor="email">Email: </label>
             <div style={{display:"flex",flexDirection:"column"}}>
             <Field name="email" type="text" as={MyInput}/>
-            {/* <MyInput         
-            // id="email"
-          name="email"
-          label="Email"
-          // value={email}
-          helperText={<ErrorMessage name="email"/>}
-          error={(<ErrorMessage name="email"/>)}
-            /> */}
             <ErrorMessage name="email"/>
-        </div>
+            </div>
             </div>
 
-            <div style={{display:"flex",justifyContent:'center', alignItems:"center"}}>
+            <div style={{display:"flex",justifyContent:'space-between', alignItems:"center", width:"30vw"}}>
             <label htmlFor="password">Password: </label>
             <div style={{display:"flex",flexDirection:"column"}}>
             <Field name="password" type="password" as={MyInput} />
@@ -87,13 +94,14 @@ export const SignIn = ({show,ema,passwor}) => {
             </div>
             </div>
 
-            <div style={{marginTop:"5%", display:"flex",justifyContent:"center",alignItems:"center",gap:"5%"}}>
-            <MyButton type='submit'> Sign In</MyButton> 
+            <div style={{marginTop:"2%", display:"flex",justifyContent:"center",alignItems:"center",gap:"1%", width:"100%"}}>
+            <MyButton type='submit' > LogIn</MyButton> 
             <NavLink to="/register">Not a user yet?</NavLink>
             </div>
         </Form>
     </Formik>
- 
+ </Paper>
+ </div>
 
   );
 };

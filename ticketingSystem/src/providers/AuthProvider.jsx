@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { array } from "yup";
 import { loginAPI } from "../api/auth";
-import { editUser, getUser, signIn, signUp } from "../api/users";
+import { delUser, editUser, getUser, signIn, signUp } from "../api/users";
 import AuthContext from "../context/AuthContext";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { createTickets, delTicket, editTicket, getTickets } from "../api/ticket";
+import { createTickets, delTicket, editTicket, getStatus, getTickets } from "../api/ticket";
+// import {MuiAlert, Snackbar } from "@mui/material";
+
+// const Alert = forwardRef(function Alert(props, ref) {
+//   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
+
 
 const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
@@ -15,7 +21,20 @@ const AuthProvider = ({ children }) => {
   const [tickets, setTickets] = useState([]);
   const [roles, setRoles] = useState([]);
   const [cat, setCat] = useState();
+  const [dev, setDev] = useState();
+  const [lvl, setLvl] = useState();
+  const [stat,setStat] = useState();
   
+  const [open, setOpen] = useState(false);
+
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
   const navigate = useNavigate();
   
   const signin = async (luser) => {
@@ -25,11 +44,9 @@ const AuthProvider = ({ children }) => {
     //   console.log(data);
       if(data.message === 'Login Success' && data.data.token){
             setToken(data.data.token);
-                setUser(data.data.user);
-                if(user.roles === 'developer' || user.roles === 'suppport' ){
-                  navigate(`/my-tickets`);
-                }
-                navigate(`/tickets`);
+              setUser(data.data.user);
+              alert("Successful Login");  
+              navigate('/my-tickets');
       }
       else{
          navigate('not-authorized');
@@ -37,54 +54,26 @@ const AuthProvider = ({ children }) => {
       }
 
 
-    //   setUsers(userss);
-    //   let emailSame = null;
-    //   let passSame = null;
-
-    //   userss.map((u)=>{
-    //     emailSame = luser.email.match(u.email);
-    //     if(emailSame){
-    //         passSame = luser.cpassword.match(u.password);
-    //         if(passSame){
-    //             setToken(u.token);
-    //             setUser(u);
-    //             navigate(`/email/${u.id}`);
-    //         }
-    //         else{
-    //         navigate('not-authorized');
-    //         }
-    //     }
-    // }
-    // );
-    // if(!emailSame){
-    //     if(!passSame){
-    //     navigate('not-authorized');
-    //     }
-    // }
+ 
   };
 
   const signout = () => {
     setToken(null);
+    alert("Successful Logout");  
+
   };
 
   const register = async (ruser) => {
     const {data, isError} = await signUp(ruser);
     console.log(data);
-    // if(data.message === 'Login Success' && data.data.token){
-    //       setToken(data.data.token);
-    //           // setUser(response.data);
-    //           navigate(`/tickets`);
-    // }
-    // else if(isError){
-    //    navigate('not-authorized');
 
-    // }
-    // return userss;
+    alert("Succesful Register");
+
   }
 
 
 
-  const gUser =async(token)=>{
+  const gUser =async()=>{
     // console.log(token);
     const config = {
       headers: { Authorization: `Bearer ${token}` }
@@ -114,6 +103,8 @@ const AuthProvider = ({ children }) => {
   };
     const {data} = await createTickets(tick,con);
     console.log(data);
+    alert("Successful Create Ticket!");  
+
 
   }
   const delTick = async(id)=>{
@@ -122,6 +113,8 @@ const AuthProvider = ({ children }) => {
   };
     const {data} = await delTicket(con,id);
     console.log(data);
+    alert("Successful Delete Ticket");  
+
 
   }
   const eTick = async(tick,id)=>{
@@ -129,7 +122,9 @@ const AuthProvider = ({ children }) => {
       headers: { Authorization: `Bearer ${token}` }
   };
     const {data} = await editTicket(con,tick,id);
-    console.log(data);
+    console.log(data);              
+    alert("Successful Edit Ticket");  
+
 
   }
   const eUser = async(user,id)=>{
@@ -138,8 +133,31 @@ const AuthProvider = ({ children }) => {
   };
     const {data} = await editUser(con,user,id);
     console.log(data);
- 
+    alert("Successful Edit User");  
 
+
+  }
+  const dUser = async(id)=>{
+    const con = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {data} = await delUser(con,id);
+    console.log(data);
+    alert("Successful Delete User");  
+
+
+  }
+
+  const lookup = async(token)=>{
+    const con = {
+      headers: { Authorization: `Bearer ${token}` }
+  };
+    const {Category, PriorityLevel,Status,Developer} = await getStatus(con);
+    setCat(Category);
+    setLvl(PriorityLevel);
+    setStat(Status);
+    setDev(Developer);
+    console.log(data);
   }
 
 
@@ -151,15 +169,21 @@ const AuthProvider = ({ children }) => {
         user,
         users,
         tickets,
+        cat,
+        lvl,
+        stat,
+        dev,
         signin,
         signout,
         register,
         gUser,
+        dUser,
         eUser,
         gTick,
         pTick,
         delTick,
-        eTick
+        eTick,
+        lookup
       }}
     >
       {children}

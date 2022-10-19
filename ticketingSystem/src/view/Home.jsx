@@ -8,21 +8,23 @@ export const Home= ()=> {
     const style = ({ isActive }) => ({
         fontWeight: isActive ? 'bold' : 'normal',
         color:"white",
-        backgroundColor:"#1C0C5B",
-        padding:"5% 3% 5% 3%",
+        backgroundColor:"#006D77",
+        padding:"1% 2% 1% 2%",
         borderRadius:"5px"
       });
   return (
     <div style={{display:"flex", width:"100%"}}>
-    <UpperNav/>
-    {/* <main style={{backgroundColor:"#C996CC", borderRadius:"5%", 
-    color:"#E3D2C8D",display:"flex", flexDirection:"column", alignContent:"center",justifyContent:"center",alignItems:"center", width:"400px", height:"350px", padding:"5% 3% 5% 3%", }} > */}
-    <div style={{display:"flex", flexDirection:"column"}}>
+
+    <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
       
-    <img src='../src/assets/support-tickets.png' style={{width:"50vw",height:"50vh"}}/>
-    <Paper elevation={3} style={{backgroundColor:"#1C0C5B", padding:"3%"}}>
-  <h2 style={{color:"white", fontWeight:"bold"}}>Welcome to Solver Ticketing System</h2>
-    </Paper>
+    <img src='../src/assets/newimage.jpeg' style={{width:"45vw",height:"50vh"}}/>
+    <Paper elevation={3} style={{ padding:"3%"}}>
+  <h2 style={{ fontWeight:"bold"}}>Welcome to Solver Ticketing System</h2>
+  <div style={{display:"flex", justifyContent:"center", gap:"5%"}}>
+  <NavLink to="/login" style={style}>Log In</NavLink>
+  <NavLink to="/register" style={style}>Register</NavLink>
+  </div>
+  </Paper>
 
 </div>
 {/* </main> */}

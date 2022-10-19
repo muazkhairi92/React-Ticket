@@ -41,9 +41,9 @@ function MyButton({children = 'default',size,...restProps}){
             padding:"5px 10px",
             borderRadius:borderRadius,
             color:"white",
-            backgroundColor:"#1C0C5B",
+            backgroundColor:"#006D77",
             fontSize:fontSize,
-            width: '40%'
+           
         }}
         {...restProps}
         >

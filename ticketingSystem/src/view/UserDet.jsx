@@ -6,7 +6,7 @@ import { MyInput } from "../components/MyInput";
 import {  useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Paper } from "@mui/material";
 
 export const UserDet = () => {
   const[Edit,SetEdit] = useState(true);
@@ -68,52 +68,49 @@ export const UserDet = () => {
     //  pTick(values,token);
       // getComponent();
   }}>
-          <div>
+          <Paper sx={{padding:"2% 2%"}}>
           <h3>My Profile</h3>
           <h3>Hi {user.name}</h3>
           <Button onClick={()=>SetEdit(!Edit)}>Update My Profile</Button>
-       <Form style={{display:"flex",flexDirection:"column",gap:"2%"}}>
+       <Form style={{display:"flex",flexDirection:"column",gap:"2%", alignItems:"center"}}>
 
   
-          <div>
 
-              <div style={{display:"flex",alignItems:"center"}}>
+          <div style={{display:"flex",alignItems:"center", width:"100%", justifyContent:"space-between"}}>
             <label htmlFor="name">Name: </label>
             {Edit?<p>{user.name}</p>:<div><Field name="name" type="text" as={MyInput}/>
             <ErrorMessage name="name"/></div>}
             </div>
 
-              <div  style={{display:"flex",alignItems:"center"}}>
-
+          <div  style={{display:"flex",alignItems:"center",width:"100%",justifyContent:"space-between"}}>
           <label htmlFor="email">Email: </label>
           {Edit?<p>{user.email}</p>:<div><Field name="email" type="text" as={MyInput} />
           <ErrorMessage name="email"/></div>}
           </div>
           
-          {Edit?null:<div  style={{display:"flex",alignItems:"center"}}>
+          {Edit?null:<div  style={{display:"flex",alignItems:"center",width:"100%",justifyContent:"space-between"}}>
           <label htmlFor="password">New Password: </label>
           <div><Field name="password" type="password" as={MyInput} />
           <ErrorMessage name="password"/></div>
           </div>}
 
-          {Edit?null:<div  style={{display:"flex",alignItems:"center"}}>
+          {Edit?null:<div  style={{display:"flex",alignItems:"center",width:"100%", justifyContent:"space-between"}}>
           <label htmlFor="cpassword">Confirm New Password: </label>
           <div><Field name="cpassword" type="password" as={MyInput} />
           <ErrorMessage name="cpassword"/></div>
           </div>}
 
-          <div style={{display:"flex",alignItems:"center"}}>
+          <div style={{display:"flex",alignItems:"center", width:"100%",justifyContent:"space-between"}}>
             <label htmlFor="categories_id">Categories: </label>
-            {Edit?<p>{Category[user.categories_id-1]}</p>:<Field as="select" name="categories_id" style={{padding:"2%"}}>
+            {Edit?<p>{Category[user.categories_id-1]}</p>:<Field as="select" name="categories_id" style={{padding:"2%",marginRight:"2%"}}>
             {Category.map((item,i)=><option value={i+1}>{item}</option>)}
             </Field>}
             </div>
 
-          </div>
           {Edit?null:<MyButton type='submit' > Update</MyButton>}        
       </Form>
 
-  </div>
+  </Paper>
   
   </Formik>
 

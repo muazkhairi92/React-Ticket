@@ -4,7 +4,7 @@ import * as yup from "yup";
 import {NavLink, useNavigate} from 'react-router-dom';
 import MyButton from './components/MyButton';
 import { MyInput } from './components/MyInput';
-import { Select } from '@mui/material';
+import { Paper, Select } from '@mui/material';
 import useAuth from './hooks/useAuth';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
@@ -47,6 +47,7 @@ const {Category, PriorityLevel,Status,Developer} = data?.data;
 
 
   return (
+    <Paper sx={{padding:"2% 5%"}}>
     <Formik 
     initialValues= {{title:"" ,description:"", categories_id:1, priority_levels_id:1,developer_id:1,statuses_id:1}}
     validationSchema = {yup.object({
@@ -81,56 +82,55 @@ const {Category, PriorityLevel,Status,Developer} = data?.data;
         // getComponent();
     }}>
             <div>
-            <Form style={{display:"flex",flexDirection:"column",gap:"2%"}}>
+            <Form style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             <h3>Create A Ticket</h3>
 
 
-          <div style={{display:"flex", height:"40vh"}}>
-            <div>
-                <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+       <div style={{display:"flex", flexDirection:"column", gap:"5%"}}>
 
-            <label htmlFor="title">Title: </label>
+            
+            <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center", width:"100%"}}>
+             <label htmlFor="title">Title: </label>
             <Field name="title" type="text" as={MyInput} />
             <ErrorMessage name="title"/>
             </div>
-           <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center",}}>
+
+           <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
             <label htmlFor="description">Description: </label>
-            <Field name="description" type="text" multiline rows={1} as={MyInput}/>
+            <Field name="description" type="text" multiline rows={3} as={MyInput}/>
             <ErrorMessage name="desc"/>
             </div>
-            </div>
+        
 
-            <div style={{display:"flex", flexDirection:"column",gap:"5%"}}>
-            <div>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
             <label htmlFor="categories_id">Category: </label>
             <Field as="select" name="categories_id" style={{ padding:"2%"}}>
-            {Category.map((item,i)=><option value={i+1}>{item}</option>)}
+            {Category.map((item,i)=><option value={i+1}>{item.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            <div>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
             <label htmlFor="priority_levels_id">Priority Level: </label>
             <Field as="select" name="priority_levels_id" style={{ padding:"2%"}}>
-            {PriorityLevel.map((item,i)=><option value={i+1}>{item}</option>)}
+            {PriorityLevel.map((item,i)=><option value={i+1}>{item.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            <div>
-            <label htmlFor="developer_id">Developer: </label>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
+            <label htmlFor="developer_id">Developer Name: </label>
             <Field as="select" name="developer_id" style={{ padding:"2%"}}>
-            {Developer.map((item,i)=><option value={i}>{item}</option>)}
+            {Developer.map((item,i)=><option value={item.id}>{item.name.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            <div>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
             <label htmlFor="statuses_id">Status: </label>
             <Field as="select" name="statuses_id" style={{padding:"2%"}}>
-            {Status.map((item,i)=><option value={i+1}>{item}</option>)}
+            {Status.map((item,i)=><option value={i+1}>{item.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            </div>
-            </div>
+      </div>
             <MyButton type='submit' > Create</MyButton>        
         </Form>
 
@@ -138,7 +138,7 @@ const {Category, PriorityLevel,Status,Developer} = data?.data;
     
     </Formik>
 
-
+</Paper>
   );
 };
 

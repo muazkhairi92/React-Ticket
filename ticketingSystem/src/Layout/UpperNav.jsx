@@ -24,10 +24,10 @@ export const UpperNav = () => {
             top:"0",
             left:"0",
             // right:"0",
-            backgroundColor:"#3D2C8D",
+            backgroundColor:"#006D77",
         }}
       >
-        <NavLink to="/home" style={style}>Home</NavLink>
+        <NavLink to="/my-tickets" style={style}>Home</NavLink>
         <div style={{display:"flex",gap:"5%",width:"30%"}}>
         {user?.roles.includes('admin') && token ?<NavLink to="/users" style={style}>Users</NavLink> : null}
         {token ?<NavLink to="/profile" style={style}>Edit Profile</NavLink> : null}

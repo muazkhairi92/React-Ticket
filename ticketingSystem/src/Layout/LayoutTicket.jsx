@@ -16,35 +16,34 @@ export const LayoutTicket = () => {
         
             <nav
             style={{
-                borderTop: 'solid 1px',
+               
                 paddingBottom: '1rem',
                 paddingTop: '1rem',
                 paddingLeft: '1rem',
                 marginLeft:"1%",
-                width:"20%",
+                width:"15%",
                 display:"flex",
                 gap:"10%",
-                height:"30vh",
                 position:"fixed",
                 flexDirection:"column",
                 alignItems:"center",
                 justifyContent:"center",
                 bottom:"10",
                 left:"0",
-                backgroundColor:"#3D2C8D",
-                borderRadius:"10%"
+                backgroundColor:"#006D77",
             }}
           >
+            
+          {(user?.roles.includes('support') || user?.roles.includes('developer') ) && token ?<NavLink to="/my-tickets" style={style}> My Tickets</NavLink> : null}
           {user?.roles.includes('support') && token ?<NavLink to="/create-ticket" style={style}>Create Tickets</NavLink> : null}
 
             {/* <NavLink to="/create-ticket" style={style}>Create Tickets</NavLink> */}
             <NavLink to="/tickets" style={style}>Pending Tickets</NavLink>
-            <NavLink to="/my-tickets" style={style}> My Tickets</NavLink>
-            <NavLink to="/tickets-complete" style={style}>Completed Tickets</NavLink>
+            <NavLink to="/complete-tickets" style={style}>Completed Tickets</NavLink>
         
             </nav>     
-        <main style={{ padding: '1rem 0',backgroundColor:"#C996CC", 
-        color:"#E3D2C8D",display:"flex", flexDirection:"column", alignContent:"center",justifyContent:"center",alignItems:"center", width:"60vw", height:"70vh",marginLeft:"20%"}}>
+        <main style={{ padding: '1rem 0',backgroundColor:"#cce3de", 
+        color:"black",display:"flex", flexDirection:"column", alignContent:"center",justifyContent:"center",alignItems:"center", width:"75vw", height:"75vh",marginLeft:"10%", marginTop:"5%"}}>
           <Outlet />
         </main>
         </>

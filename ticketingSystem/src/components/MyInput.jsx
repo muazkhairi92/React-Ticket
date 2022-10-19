@@ -10,9 +10,9 @@ export const MyInput = ({id,name,label,value,onChange,helperText,...rest}) => {
         <Box     
         component="form"
         sx={{
-            "& .MuiInputBase-root": {
-                height: 30
-            },
+            // "& .MuiInputBase-root": {
+            //     height: 30
+            // },
             '& > :not(style)': { m: 1, height: '1%' },
             '& label.Mui-focused': {
                 color: '#09A3A9',
@@ -45,6 +45,7 @@ export const MyInput = ({id,name,label,value,onChange,helperText,...rest}) => {
                 value={value}
                 onChange={onChange}
                 helperText={helperText}
+                size="small"
         // color="primary"
         {...rest}
 
