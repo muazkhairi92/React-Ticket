@@ -22,6 +22,7 @@ export const LayoutTicket = () => {
                 paddingLeft: '1rem',
                 marginLeft:"1%",
                 width:"15%",
+                height:"20%",
                 display:"flex",
                 gap:"10%",
                 position:"fixed",

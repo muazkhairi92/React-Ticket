@@ -71,14 +71,7 @@ const Tickets = data?.data?.data;
   <div style={{ height:"100%",width: '80%', display:"flex", flexDirection:"column", alignItems:"center" }}>
     <h2> Completed Tickets</h2>
 
-  {/* <DataGrid
-    rows={Tickets}
-    columns={columns}
-    pageSize={5}
-    rowsPerPageOptions={[5]}
-    checkboxSelection
-  /> */}
-  {/* <h2>tesss</h2> */}
+
   <div style={{width:"100%", display:"flex", flexWrap:"wrap", gap:"5%", marginTop:"5%", height:"60%", overflowY: "scroll"}}>
   { Tickets.map((ticket)=>(
     (ticket.status === "complete")?
@@ -100,16 +93,16 @@ const Tickets = data?.data?.data;
   maxWidth="sm">
         <DialogTitle> Ticket Details</DialogTitle>
         <p onClick={handleClose} style={{cursor:"pointer",position:"absolute",top:"0", right:"5%"}}><i class="bi bi-x-square"></i></p>
-        <div style={{display:"flex", flexDirection:"column",justifyContent:"space-between", alignItems:"center"}}>
+        <div style={{display:"flex", flexDirection:"column",justifyContent:"space-between", alignItems:"center",marginBottom:"3%"}}>
       <h3>#{tick.id}:{tick.title}</h3>
     
-      <p>Description: {tick.description}</p>
-    <p>Category: {tick.category}</p>
-    <p>Priority Level: {tick.level}</p>
-    <p>Created By: {tick.support_name}</p>
-    <p>Assign to: {tick.developer_name}</p>
-    <p>Status: {tick.status}</p>
-    <p>Developer notes: {tick.developer_notes}</p>
+      <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Description:</p><p>{tick.description}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Category:</p><p> {tick.category}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Priority Level:</p><p> {tick.level}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Created By:</p> <p>{tick.support_name}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Assign To:</p><p> {tick.developer_name}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Status:</p><p> {tick.status}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Developer Notes: </p><p> {tick.developer_notes}</p></div>
     {user.roles === "support"?<MyButton onClick={()=>{ handleClose();delTick(tick.id)}} > Delete Ticket</MyButton>:null  }  
       </div>
         </Dialog>

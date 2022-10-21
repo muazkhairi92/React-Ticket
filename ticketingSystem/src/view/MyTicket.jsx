@@ -38,6 +38,11 @@ export const MyTicket= ()=> {
   const handleClose = () => {
     setOpen(false);
   };
+
+  function capitalFL(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   const getBackgroundColor = (priority)=>{
     switch(priority){
       case "High": return "red"
@@ -96,18 +101,19 @@ const Status = ["in-progress","back-log","complete"];
     (ticket.status !== "complete" && (ticket.developer_name === user.name || ticket.support_name === user.name))?
   <Paper elevation={4} style={{width:"30%", fontSize:"80%", padding:"1%",gap:"0%", display:"flex", flexDirection:"column", marginBottom:"5%", backgroundColor:"#83C5BE", overflowWrap: "break-word"}}>
     <div style={{display:"flex", justifyContent:"space-between", alignItems:"center", height:"20%"}}>
-      <h3 style={{ width:"60%"}}>#{ticket.id}:{ticket.title}</h3>
+      <h3 style={{ width:"55%"}}>#{ticket.id}:{ticket.title}</h3>
         
-      <div style={{display:"flex", gap:"30%", width:"20%",alignItems:"center"}}>
+      <div style={{display:"flex", gap:"10%", width:"45%",alignItems:"center"}}>
         <i class="bi bi-patch-exclamation-fill" style={{color:getBackgroundColor(ticket.level)}}></i>
+        {user.roles === "support"?<p onClick={()=>{handleClickOpen();handlePassData(ticket)}} style={{cursor:"pointer"}} >details</p> :null}
 
       {user.roles === "support"?<i onClick={()=>delTick(ticket.id)} style={{cursor:"pointer"}} class="bi bi-trash3"></i>:
       <i onClick={()=>{handleClickOpen();handlePassData(ticket)}} style={{cursor:"pointer"}} class="bi bi-pencil-square"></i>}
       </div>
       </div>
     <div style={{height:"35%"}}><p>Description: {ticket.description}</p></div>
-    <p>Created By: {ticket.support_name}</p>
-    <p>Assign To: {ticket.developer_name}</p>
+    <p>Created By: {capitalFL(ticket.support_name)}</p>
+    <p>Assign To: {capitalFL(ticket.developer_name)}</p>
   </Paper>:null
   
   ))
@@ -145,28 +151,29 @@ const Status = ["in-progress","back-log","complete"];
           <h3>#{tick.id}:{tick.title}</h3>
    
             </div>
-          <p>Description: {tick.description}</p>
-          <p>Category: {tick.category}</p>
-          <p>Priority Level: {tick.level}</p>
-          <p>Created By: {tick.support_name}</p>
-          <p>Assign to: {tick.developer_name}</p>
+            <div style={{display:"flex", justifyContent:"space-between", width:"60%"}}><p>Description:</p><p>{tick.description}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"60%"}}><p>Category:</p><p> {tick.category}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"60%"}}><p>Priority Level:</p><p> {tick.level}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"60%"}}><p>Created By:</p> <p>{tick.support_name}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"60%"}}><p>Assign To:</p><p> {tick.developer_name}</p></div>
+    {/* <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Status:</p><p> {tick.status}</p></div>
+    <div style={{display:"flex", justifyContent:"space-between", width:"50%"}}><p>Developer Notes: </p><p> {tick.developer_notes}</p></div> */}
   
           
-          <div>    
-          <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+          
+          <div  style={{display:"flex", justifyContent:"space-between",alignItems:"center", width:"60%"}}>
           <label htmlFor="developer_notes">Developer Notes: </label>
           {user.roles === "support"?<p>{tick.developer_notes}</p>:<div><Field name="developer_notes" type="text" as={MyInput} />
           <ErrorMessage name="developer_notes"/></div>}
           </div>
 
-          <div style={{display:"flex", justifyContent:"space-between",alignItems:"center"}}>
+          <div style={{display:"flex", justifyContent:"space-between",alignItems:"center", width:"60%"}}>
             <label htmlFor="statuses_id">Status: </label>
-            {user.roles === "support"?<p>{tick.status}</p>:<div><Field as="select" name="statuses_id" style={{padding:"2%"}}>
+            {user.roles === "support"?<p>{tick.status}</p>:<div><Field as="select" name="statuses_id" style={{padding:"2%", marginRight:"3%"}}>
             {Status?.map((item,i)=><option value={i+1}>{item}</option>)}
             </Field></div>}
             </div>
 
-          </div>
 
           {user.roles === "developer"?<MyButton type='submit' > Update</MyButton>: <MyButton onClick={()=>{ handleClose();delTick(tick.id)}} > Delete Ticket</MyButton>  }     
       </Form>

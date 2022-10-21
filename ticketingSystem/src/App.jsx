@@ -7,7 +7,7 @@ import {SignIn} from './view/SignIn';
 import {SignUp} from './view/SignUp';
 import { TicketDash } from './view/TicketDash';
 import { LayoutTicket } from './Layout/LayoutTicket';
-import CreateTicket from './CreateTicket';
+import CreateTicket from './view/CreateTicket';
 import UserDash from './view/UserDash';
 import { ProtectedRoute } from './routes/ProtectedRoutes';
 import useAuth from './hooks/useAuth';

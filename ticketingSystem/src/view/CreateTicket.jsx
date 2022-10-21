@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useFormik,Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from "yup";
 import {NavLink, useNavigate} from 'react-router-dom';
-import MyButton from './components/MyButton';
-import { MyInput } from './components/MyInput';
+import MyButton from '../components/MyButton';
+import { MyInput } from '../components/MyInput';
 import { Paper, Select } from '@mui/material';
-import useAuth from './hooks/useAuth';
+import useAuth from '../hooks/useAuth';
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 
@@ -104,28 +104,28 @@ const {Category, PriorityLevel,Status,Developer} = data?.data;
 
             <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
             <label htmlFor="categories_id">Category: </label>
-            <Field as="select" name="categories_id" style={{ padding:"2%"}}>
+            <Field as="select" name="categories_id" style={{ padding:"2%", marginRight:"3%"}}>
             {Category.map((item,i)=><option value={i+1}>{item.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:"3%"}}>
             <label htmlFor="priority_levels_id">Priority Level: </label>
-            <Field as="select" name="priority_levels_id" style={{ padding:"2%"}}>
+            <Field as="select" name="priority_levels_id" style={{ padding:"2%", marginRight:"3%"}}>
             {PriorityLevel.map((item,i)=><option value={i+1}>{item.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%", marginTop:"3%", }}>
             <label htmlFor="developer_id">Developer Name: </label>
-            <Field as="select" name="developer_id" style={{ padding:"2%"}}>
+            <Field as="select" name="developer_id" style={{ padding:"2%", marginRight:"3%"}}>
             {Developer.map((item,i)=><option value={item.id}>{item.name.toUpperCase()}</option>)}
             </Field>
             </div>
 
-            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%"}}>
+            <div style={{display:"flex", justifyContent:"space-between",alignItems:"center",width:"100%",marginTop:"3%", marginBottom:"3%"}}>
             <label htmlFor="statuses_id">Status: </label>
-            <Field as="select" name="statuses_id" style={{padding:"2%"}}>
+            <Field as="select" name="statuses_id" style={{padding:"2%", marginRight:"3%"}}>
             {Status.map((item,i)=><option value={i+1}>{item.toUpperCase()}</option>)}
             </Field>
             </div>
