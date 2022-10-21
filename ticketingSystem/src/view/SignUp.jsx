@@ -28,7 +28,7 @@ export const SignUp = () => {
   const {register} = useAuth();
 
   const fetchRoles= ()=>{
-    return  axios.get('https://ba47-49-124-200-218.ap.ngrok.io/api/roles-list')
+    return  axios.get('https://ticket1a-app.herokuapp.com/api/roles-list')
 }
 const {data, isLoading,isError,error,isFetching,refetch} = useQuery(["Roles"],fetchRoles,{
     enabled:true,
