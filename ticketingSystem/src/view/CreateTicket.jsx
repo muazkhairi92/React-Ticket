@@ -21,7 +21,7 @@ export const CreateTicket = () => {
     headers: { Authorization: `Bearer ${token}` }
 };
   const fetchLookup= ()=>{
-    return  axios.get('http://127.0.0.1:8000/api/ticket-lookup',config)
+    return  axios.get('https://ticket1a-app.herokuapp.com/api/ticket-lookup',config)
 }
   
   const {data, isLoading,isError,error,isFetching,refetch} = useQuery(["tik"],fetchLookup,{

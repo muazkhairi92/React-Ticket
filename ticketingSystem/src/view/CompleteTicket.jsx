@@ -36,7 +36,7 @@ export const CompleteTicket= ()=> {
     headers: { Authorization: `Bearer ${token}` }
 };
   const fetchTicket= ()=>{
-    return  axios.get('http://127.0.0.1:8000/api/ticket',config)
+    return  axios.get('https://ticket1a-app.herokuapp.com/api/ticket',config)
 };
 const queryClient = useQueryClient();
   

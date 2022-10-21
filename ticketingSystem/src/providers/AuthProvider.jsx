@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { array } from "yup";
-import { loginAPI } from "../api/auth";
+
 import { delUser, editUser, getUser, signIn, signUp } from "../api/users";
 import AuthContext from "../context/AuthContext";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+
 import { createTickets, delTicket, editTicket, getStatus, getTickets } from "../api/ticket";
 // import {MuiAlert, Snackbar } from "@mui/material";
 
@@ -68,6 +66,7 @@ const AuthProvider = ({ children }) => {
     console.log(data);
 
     alert("Succesful Register");
+    navigate('/login');
 
   }
 

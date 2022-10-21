@@ -58,7 +58,7 @@ export const TicketDash= ()=> {
     headers: { Authorization: `Bearer ${token}` }
 };
   const fetchTicket= ()=>{
-    return  axios.get('http://127.0.0.1:8000/api/ticket',config)
+    return  axios.get('https://ticket1a-app.herokuapp.com/ticket',config)
 }
 //   const fetchStatus= async()=>{
 //     return  await axios.get('http://127.0.0.1:8000/api/ticket-lookup',config)

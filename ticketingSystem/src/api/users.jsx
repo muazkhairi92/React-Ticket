@@ -4,14 +4,14 @@ import { destroy, get, post, put } from ".";
 
 export const signIn = async (data)=>{
     const res = await post(
-        'http://127.0.0.1:8000/api/login',data
+        'https://ticket1a-app.herokuapp.com/api/login',data
         );
         return res;
     };
 
 export const signUp = async (data)=>{
     const res = await post(
-        'http://127.0.0.1:8000/api/register',
+        'https://ticket1a-app.herokuapp.com/api/register',
         data);
         return res;
     };
@@ -19,14 +19,14 @@ export const signUp = async (data)=>{
 
 export const getUser = async (config)=>{
         const res = await get(
-            'http://127.0.0.1:8000/api/user',config
+            'https://ticket1a-app.herokuapp.com/api/user',config
         );
         return res;
     };
 
 export const editUser = async (config,data,id)=>{
         const res = await put(
-            `http://127.0.0.1:8000/api/user/${id}`,data,config
+            `https://ticket1a-app.herokuapp.com/api/user/${id}`,data,config
         );
         return res;
     };
@@ -34,7 +34,7 @@ export const editUser = async (config,data,id)=>{
 
 export const delUser = async (config,id)=>{
         const res = await destroy(
-            `http://127.0.0.1:8000/api/user/${id}`,config
+            `https://ticket1a-app.herokuapp.com/api/user/${id}`,config
         );
         return res;
     };
@@ -42,7 +42,7 @@ export const delUser = async (config,id)=>{
 
 export const getRoles = async ()=>{
         const res = await get(
-            'http://127.0.0.1:8000/api/roles-list',
+            'https://ticket1a-app.herokuapp.com/api/roles-list',
         );
         return res;
     };

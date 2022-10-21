@@ -39,7 +39,7 @@ function App() {
         <Route path="/tickets" element={<ProtectedRoute><TicketDash /></ProtectedRoute>} />
         <Route path="/complete-tickets" element={<ProtectedRoute><CompleteTicket /></ProtectedRoute>} />
         <Route path="/my-tickets" element={<ProtectedRoute isAllowed={!user?.roles.includes('admin')} redirectPath={'/users'}><MyTicket /></ProtectedRoute>} />
-        <Route path="/create-ticket" element={<CreateTicket />} />
+        <Route path="/create-ticket" element={<ProtectedRoute><CreateTicket /></ProtectedRoute>} />
         </Route>
       </Routes>
     </div>

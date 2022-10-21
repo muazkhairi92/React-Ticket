@@ -28,7 +28,7 @@ export const SignUp = () => {
   const {register} = useAuth();
 
   const fetchRoles= ()=>{
-    return  axios.get('http://127.0.0.1:8000/api/roles-list')
+    return  axios.get('https://ticket1a-app.herokuapp.com/api/roles-list')
 }
 const {data, isLoading,isError,error,isFetching,refetch} = useQuery(["Roles"],fetchRoles,{
     enabled:true,
@@ -120,7 +120,6 @@ const{ Category, Roles} = data?.data;
         setEmai(values.email);
         setPass(values.password);
         register(values);
-        navigate('/login');
 
        
         // getComponent();
