@@ -36,7 +36,7 @@ export const CompleteTicket= ()=> {
     headers: { Authorization: `Bearer ${token}` }
 };
   const fetchTicket= ()=>{
-    return  axios.get('https://ticket1a-app.herokuapp.com/api/ticket',config)
+    return  axios.get('https://ba47-49-124-200-218.ap.ngrok.io/api/ticket',config)
 };
 const queryClient = useQueryClient();
   

@@ -38,7 +38,7 @@ const UserDash = () => {
       headers: { Authorization: `Bearer ${token}` }
   };
     const fetchUsers= ()=>{
-      return  axios.get('https://ticket1a-app.herokuapp.com/api/user',config)
+      return  axios.get('https://ba47-49-124-200-218.ap.ngrok.io/api/user',config)
   }
   //   const fetchRoles= ()=>{
   //     return  axios.get('http://127.0.0.1:8000/api/roles-list')

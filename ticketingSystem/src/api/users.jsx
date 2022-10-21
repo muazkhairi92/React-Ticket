@@ -4,14 +4,14 @@ import { destroy, get, post, put } from ".";
 
 export const signIn = async (data)=>{
     const res = await post(
-        'https://ticket1a-app.herokuapp.com/api/login',data
+        'https://ba47-49-124-200-218.ap.ngrok.io/api/login',data
         );
         return res;
     };
 
 export const signUp = async (data)=>{
     const res = await post(
-        'https://ticket1a-app.herokuapp.com/api/register',
+        'https://ba47-49-124-200-218.ap.ngrok.io/api/register',
         data);
         return res;
     };
@@ -19,14 +19,14 @@ export const signUp = async (data)=>{
 
 export const getUser = async (config)=>{
         const res = await get(
-            'https://ticket1a-app.herokuapp.com/api/user',config
+            'https://ba47-49-124-200-218.ap.ngrok.io/api/user',config
         );
         return res;
     };
 
 export const editUser = async (config,data,id)=>{
         const res = await put(
-            `https://ticket1a-app.herokuapp.com/api/user/${id}`,data,config
+            `https://ba47-49-124-200-218.ap.ngrok.io/api/user/${id}`,data,config
         );
         return res;
     };
@@ -34,7 +34,7 @@ export const editUser = async (config,data,id)=>{
 
 export const delUser = async (config,id)=>{
         const res = await destroy(
-            `https://ticket1a-app.herokuapp.com/api/user/${id}`,config
+            `https://ba47-49-124-200-218.ap.ngrok.io/api/user/${id}`,config
         );
         return res;
     };
@@ -42,7 +42,7 @@ export const delUser = async (config,id)=>{
 
 export const getRoles = async ()=>{
         const res = await get(
-            'https://ticket1a-app.herokuapp.com/api/roles-list',
+            'https://ba47-49-124-200-218.ap.ngrok.io/api/roles-list',
         );
         return res;
     };
