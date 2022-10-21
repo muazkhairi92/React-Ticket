@@ -1,15 +1,15 @@
 import axios from "axios";
 
-// axios.interceptors.request.use(
-//     async (config) => {
-//       config.headers['Accept'] = 'application/json';
-//       config.headers['Content-Type'] = 'application/json';
-//       return config;
-//     },
-//     (error) => {
-//       Promise.reject(error)
-//     }
-//   );
+axios.interceptors.request.use(
+    async (config) => {
+      config.headers['Accept'] = 'application/json';
+      config.headers['Content-Type'] = 'application/json';
+      return config;
+    },
+    (error) => {
+      Promise.reject(error)
+    }
+  );
   
 export const get = async (endpoint, body,options,config)=>{
     try {
