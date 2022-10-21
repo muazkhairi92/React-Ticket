@@ -49,7 +49,7 @@ const {Category, PriorityLevel,Status,Developer} = data?.data;
   return (
     <Paper sx={{padding:"2% 5%"}}>
     <Formik 
-    initialValues= {{title:"" ,description:"", categories_id:1, priority_levels_id:1,developer_id:1,statuses_id:1}}
+    initialValues= {{title:"" ,description:"", categories_id:1, priority_levels_id:1,developer_id:Developer[0].id,statuses_id:1}}
     validationSchema = {yup.object({
         title: yup
         .string().

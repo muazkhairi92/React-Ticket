@@ -93,7 +93,7 @@ const Tickets = data?.data?.data;
 
   return (
 
-  <div style={{ height:"100%",width: '80%', display:"flex", flexDirection:"column", alignItems:"center" }}>
+  <div style={{ height:"100%",width: '90%', display:"flex", flexDirection:"column", alignItems:"center" }}>
     <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
     <h2> All Pending Tickets</h2>
    
@@ -101,7 +101,7 @@ const Tickets = data?.data?.data;
   <div style={{width:"100%", display:"flex", flexWrap:"wrap", gap:"5%", marginTop:"5%", height:"60%", overflowY: "scroll"}}>
   { Tickets.map((ticket)=>(
     (ticket.status !== "complete")?
-  <Paper elevation={4} style={{width:"30%", fontSize:"80%", padding:"1%",gap:"0%", display:"flex", flexDirection:"column", marginBottom:"5%", backgroundColor:"#83C5BE", overflowWrap: "break-word"}} >
+  <Paper elevation={4} style={{width:"25%", fontSize:"80%", padding:"1%",gap:"0%", display:"flex", flexDirection:"column", marginBottom:"5%", backgroundColor:"#83C5BE", overflowWrap: "break-word"}} >
        
 
     <div style={{display:"flex", justifyContent:"space-between", alignItems:"center",height:"20%"}}>
