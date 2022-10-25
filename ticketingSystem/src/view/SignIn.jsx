@@ -45,7 +45,7 @@ export const SignIn = ({show,ema,passwor}) => {
   return (
     <div style={{display:"flex", justifyItems:'center',justifyContent:'center', alignItems:"center", gap:"15%", marginTop:"5%"}}>
    
-    <img src='../public/assets/login.png' style={{width:"25%",height:"25%"}}/>
+    <img src={require('../public/assets/login.png')} style={{width:"25%",height:"25%"}}/>
 
        
           
