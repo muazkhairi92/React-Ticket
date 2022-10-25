@@ -17,7 +17,7 @@ export const Home= ()=> {
 
     <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
       
-    <img src='../src/assets/newimage.jpeg' style={{width:"45vw",height:"50vh"}}/>
+    <img src='../public/assets/newimage.jpeg' style={{width:"45vw",height:"50vh"}}/>
     <Paper elevation={3} style={{ padding:"3%"}}>
   <h2 style={{ fontWeight:"bold"}}>Welcome to Solver Ticketing System</h2>
   <div style={{display:"flex", justifyContent:"center", gap:"5%"}}>
