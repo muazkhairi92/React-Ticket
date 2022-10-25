@@ -11,6 +11,8 @@ import axios from "axios";
 import { MyInput } from '../components/MyInput';
 import { Paper } from '@mui/material';
 // import {MuiAlert, Snackbar } from "@mui/material";
+import img from '/assets/login.png';
+
 
 // const Alert = forwardRef(function Alert(props, ref) {
 //   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -45,7 +47,7 @@ export const SignIn = ({show,ema,passwor}) => {
   return (
     <div style={{display:"flex", justifyItems:'center',justifyContent:'center', alignItems:"center", gap:"15%", marginTop:"5%"}}>
    
-    <img src={require('../public/assets/login.png')} style={{width:"25%",height:"25%"}}/>
+    <img src={img} style={{width:"25%",height:"25%"}}/>
 
        
           

@@ -12,6 +12,7 @@ import axios from "axios";
 import Select from '@mui/material/Select';
 import { Paper } from '@mui/material';
 
+import img from '/assets/register.png';
 
 
 
@@ -80,7 +81,7 @@ const{ Category, Roles} = data?.data;
   return (
     <div style={{display:"flex", justifyItems:'center',justifyContent:'center', alignItems:"center", gap:"15%", marginTop:"5%"}}>
    
-    <img src={require('../public/assets/register.png')} style={{width:"35%",height:"45%"}}/>
+    <img src={img} style={{width:"35%",height:"45%"}}/>
 
        
           

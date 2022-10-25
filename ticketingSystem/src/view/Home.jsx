@@ -2,7 +2,7 @@ import '../App.css'
 import {NavLink} from 'react-router-dom';
 import { UpperNav } from '../Layout/UpperNav';
 import { Paper } from '@mui/material';
-
+import img from '/assets/newimage.jpeg';
 
 export const Home= ()=> {
     const style = ({ isActive }) => ({
@@ -17,7 +17,7 @@ export const Home= ()=> {
 
     <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
       
-    <img src={require('../public/assets/newimage.jpeg')} style={{width:"45vw",height:"50vh"}}/>
+    <img src={img} style={{width:"45vw",height:"50vh"}}/>
     <Paper elevation={3} style={{ padding:"3%"}}>
   <h2 style={{ fontWeight:"bold"}}>Welcome to Solver Ticketing System</h2>
   <div style={{display:"flex", justifyContent:"center", gap:"5%"}}>
