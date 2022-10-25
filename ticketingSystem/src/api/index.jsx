@@ -1,17 +1,17 @@
 import axios from "axios";
 
-axios.interceptors.request.use(
-    async (config) => {
-      config.headers['Accept'] = 'application/json';
-      config.headers['Content-Type'] = 'application/json';
-      config.headers['Access-Control-Allow-Origin'] = '*';
-      config.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
-      return config;
-    },
-    (error) => {
-      Promise.reject(error)
-    }
-  );
+// axios.interceptors.request.use(
+//     async (config) => {
+//       config.headers['Accept'] = 'application/json';
+//       config.headers['Content-Type'] = 'application/json';
+//       config.headers['Access-Control-Allow-Origin'] = '*';
+//       config.headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept';
+//       return config;
+//     },
+//     (error) => {
+//       Promise.reject(error)
+//     }
+//   );
   
 export const get = async (endpoint, body,options,config)=>{
     try {
