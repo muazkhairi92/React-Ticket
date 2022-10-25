@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route index element={<TicketDash/>} />
+        <Route index element={<Home/>} />
         <Route path="home" element={<Home/>} />
         <Route element={<Layout/>}>
         <Route path="login" element={<SignIn />} />
